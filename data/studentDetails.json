@@ -1,0 +1,7 @@
+[
+  { "id": 1, "address": "Jakarta", "ktm": 1001, "grade": 90, "dateOfBirth": "1995-04-12", "StudentId": 2 },
+  { "id": 2, "address": "Bandung", "ktm": 1002, "grade": 85, "dateOfBirth": "1998-08-05", "StudentId": 3 },
+  { "id": 3, "address": "Surabaya", "ktm": 1003, "grade": 88, "dateOfBirth": "1999-09-11", "StudentId": 4 },
+  { "id": 4, "address": "Medan", "ktm": 1004, "grade": 91, "dateOfBirth": "1996-06-25", "StudentId": 5 },
+  { "id": 5, "address": "Yogyakarta", "ktm": 1005, "grade": 87, "dateOfBirth": "1997-12-19", "StudentId": 6 }
+]
