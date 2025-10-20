@@ -1,0 +1,8 @@
+[
+  { "id": 1, "name": "Gitar", "description": "Belajar teknik dasar bermain gitar", "duration": 30, "CategoryId": 1 },
+  { "id": 2, "name": "Piano", "description": "Mengenal tuts dan akor dasar piano", "duration": 40, "CategoryId": 1 },
+  { "id": 3, "name": "Drum", "description": "Latihan pola irama dan tempo dasar", "duration": 35, "CategoryId": 1 },
+  { "id": 4, "name": "Bass", "description": "Belajar groove dan ritme bass", "duration": 25, "CategoryId": 1 },
+  { "id": 5, "name": "Biola", "description": "Teknik dasar memegang dan memainkan biola", "duration": 45, "CategoryId": 1 },
+  { "id": 6, "name": "Vokal", "description": "Latihan pernapasan dan pengendalian nada", "duration": 30, "CategoryId": 2 }
+]
