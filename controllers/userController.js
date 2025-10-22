@@ -1,4 +1,4 @@
-const { Student, StudentDetail, Course, Category } = require('../models')
+const { Student } = require('../models')
 const { Op } = require('sequelize')
 
 class UserController {
@@ -11,7 +11,13 @@ class UserController {
     }
     static async postRegister(req, res) {
         try {
-            res.send("test")
+            const {name,email,password} = req.body
+            await Student.create({
+                name,
+                email,
+                password
+            })
+            res.redirect('/login')
         } catch (err) {
             res.send(err)
         }
