@@ -1,5 +1,7 @@
 const { Student, StudentDetail, Course, Category } = require('../models')
 const { Op } = require('sequelize')
+const { toTitleCase } = require('../helpers/helper')
+
 
 class Controller {
     static landingPage(req, res) {
@@ -83,7 +85,7 @@ class Controller {
             const courses = await Course.findAll(options)
             const info = await Course.notif()
 
-            res.render('courses', { courses, search, info: info[0].dataValues, notif })
+            res.render('courses', { courses, search, info: info[0].dataValues, notif, toTitleCase })
         } catch (err) {
             res.send(err)
         }
@@ -104,9 +106,15 @@ class Controller {
             await Course.create({ name, description, duration, CategoryId })
             res.redirect("/courses")
         } catch (err) {
+            if (err.name === "SequelizeValidationError") {
+                const categories = await Category.findAll()
+                const errors = err.errors.map(e => e.message)
+                return res.render("courseAdd", { categories, errors })
+            }
             res.send(err)
         }
     }
+    
 
     static async delete(req, res) {
         try {
