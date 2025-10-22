@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Student Detail</title>
+</head>
+<body>
+  <nav>
+    <a href="/students/<%= data.id %>">Back to Detail</a>
+  </nav>
+
+  <h1>Edit Student Detail</h1>
+  <h3>Profile: <%= data.name %></h3>
+
+  <form method="POST" action="/students/edit/<%= data.id %>">
+    <p>
+      <label>Name</label><br>
+      <input type="text" name="name" value="<%= data.name %>" required>
+    </p>
+
+    <p>
+      <label>Address</label><br>
+      <input type="text" name="address" value="<%= data.StudentDetail ? data.StudentDetail.address : '' %>" required>
+    </p>
+
+    <p>
+      <label>KTM</label><br>
+      <input type="number" name="ktm" value="<%= data.StudentDetail ? data.StudentDetail.ktm : '' %>" required>
+    </p>
+
+    <p>
+      <label>Date of Birth</label><br>
+      <input type="date" name="dateOfBirth" value="<%= data.StudentDetail ? data.StudentDetail.formatDate : '' %>">
+    </p>
+
+    <p>
+      <button type="submit">Save</button>
+    </p>
+  </form>
+</body>
+</html>
