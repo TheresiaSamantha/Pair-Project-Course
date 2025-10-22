@@ -1,4 +1,5 @@
 const { Student, StudentDetail, Course, Category } = require('../models')
+const { Op } = require('sequelize')
 
 class Controller {
     static landingPage(req, res) {
@@ -61,8 +62,68 @@ class Controller {
         } catch (err) {
             res.send(err)
         }
+    }
+
+    static async readCourse(req, res) {
+        try {
+            const { search, notif } = req.query
+
+            const options = {
+            include: [
+                { model: Category },
+                { model: Student }
+            ],
+            order: [['name', 'ASC']]
+            }
+
+            if (search) {
+            options.where = { name: { [Op.iLike]: `%${search}%` } }
+            }
+
+            const courses = await Course.findAll(options)
+            const info = await Course.notif()
+
+            res.render('courses', { courses, search, info: info[0].dataValues, notif })
+        } catch (err) {
+            res.send(err)
+        }
         }
 
+    static async getAdd(req, res) {
+        try {
+            const categories = await Category.findAll()
+            res.render("courseAdd", { categories })
+        } catch (err) {
+            res.send(err)
+        }
+    }
+
+    static async postAdd(req, res) {
+        try {
+            const { name, description, duration, CategoryId } = req.body
+            await Course.create({ name, description, duration, CategoryId })
+            res.redirect("/courses")
+        } catch (err) {
+            res.send(err)
+        }
+    }
+
+    static async delete(req, res) {
+        try {
+            const { id } = req.params
+
+            const course = await Course.findByPk(id)
+            const courseName = course.name
+
+            await Course.destroy({ where: { id } })
+
+            const notif = `Course ${courseName} berhasil dihapus!`
+
+            res.redirect(`/courses?notif=${notif}`)
+        } catch (err) {
+            res.send(err)
+        }
+    }
     
 }
 
