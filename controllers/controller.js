@@ -1,6 +1,14 @@
 const { Student, StudentDetail, Course, Category } = require('../models')
 
 class Controller {
+    static landingPage(req, res) {
+        try {
+            res.render("landingPage")
+        } catch (err) {
+            res.send(err)
+        }
+        }
+
     static async studentDetail(req, res) {
         try {
             const { id } = req.params
