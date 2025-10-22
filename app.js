@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 // app.post('/login', UserController.postLogin)
 
 //controll
-// app.get("/", Controller.landingPage);
+app.get("/", Controller.landingPage);
 
 // app.get("/courses", Controller.readCourse); // ada search
 // role admin
