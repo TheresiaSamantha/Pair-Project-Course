@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Course</title>
+</head>
+<body>
+  <nav>
+    <a href="/courses">Back to Courses</a>
+  </nav>
+
+  <h1>Add New Course</h1>
+
+  <form method="POST" action="/courses/add">
+    <p>
+      <label>Name</label><br>
+      <input type="text" name="name" required>
+    </p>
+
+    <p>
+      <label>Description</label><br>
+      <textarea name="description" rows="4" cols="30" required></textarea>
+    </p>
+
+    <p>
+      <label>Duration (jam)</label><br>
+      <input type="number" name="duration" required>
+    </p>
+
+    <p>
+      <label>Category</label><br>
+      <select name="CategoryId" required>
+        <option value="" hidden>-- Select Category --</option>
+        <% categories.forEach(el => { %>
+          <option value="<%= el.id %>"><%= el.name %></option>
+        <% }) %>
+      </select>
+    </p>
+
+    <p>
+      <button type="submit">Add Course</button>
+    </p>
+  </form>
+</body>
+</html>

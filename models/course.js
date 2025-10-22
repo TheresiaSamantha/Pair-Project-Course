@@ -18,6 +18,14 @@ module.exports = (sequelize, DataTypes) => {
 
       Course.belongsTo(models.Category)
     }
+
+    static async notif() {
+      return await Course.findAll({
+        attributes: [
+          [this.sequelize.fn("COUNT", this.sequelize.col("id")), "total"]
+        ]
+      })
+    }
   }
   Course.init({
     name: DataTypes.STRING,

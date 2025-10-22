@@ -19,11 +19,11 @@ app.use(express.urlencoded({ extended: false }));
 //controll
 app.get("/", Controller.landingPage);
 
-// app.get("/courses", Controller.readCourse); // ada search
+app.get("/courses", Controller.readCourse); // ada search
 // role admin
-// app.get("/courses/add", Controller.getAdd);
-// app.post("/courses/add", Controller.postAdd);
-// app.get("/courses/delete/:id", Controller.delete);
+app.get("/courses/add", Controller.getAdd);
+app.post("/courses/add", Controller.postAdd);
+app.get("/courses/delete/:id", Controller.delete);
 
 // role student
 app.get("/students/edit/:id", Controller.getEdit);
