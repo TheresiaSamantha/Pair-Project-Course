@@ -9,11 +9,11 @@ app.use(express.urlencoded({ extended: false }));
 
 // setting user
 // register
-// app.get('/register', UserController.registerForm)
+app.get('/register', UserController.registerForm)
 // app.post('/register', UserController.postRegister)
 
 // login
-// app.get('/login', UserController.loginForm)
+app.get('/login', UserController.loginForm)
 // app.post('/login', UserController.postLogin)
 
 // all role
