@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Detail</title>
+</head>
+<body>
+
+  <h1>Student Detail</h1>
+
+  <h3>Profile: <%= data.name %></h3>
+
+  <table border="1" cellpadding="6">
+    <tr>
+      <th>Name</th>
+      <td><%= data.name %></td>
+    </tr>
+    <tr>
+      <th>Address</th>
+      <td><%= data.StudentDetail ? data.StudentDetail.address : "-" %></td>
+    </tr>
+    <tr>
+      <th>KTM</th>
+      <td><%= data.StudentDetail ? data.StudentDetail.ktm : "-" %></td>
+    </tr>
+    <tr>
+      <th>Grade</th>
+      <td><%= data.StudentDetail ? data.StudentDetail.grade : "-" %></td>
+    </tr>
+    <tr>
+      <th>Date of Birth</th>
+      <td><%= data.StudentDetail ? data.StudentDetail.formatDate : "-" %></td>
+    </tr>
+  </table>
+
+  <p>
+    <a href="/students/edit/<%= data.id %>">
+      <button>Edit Profile</button>
+    </a>
+  </p>
+
+  <h3>Courses Yang Diikuti</h3>
+  <% if (data.Courses && data.Courses.length) { %>
+    <table border="1" cellpadding="6">
+      <tr>
+        <th>#</th>
+        <th>Course</th>
+        <th>Category</th>
+        <th>Duration (jam)</th>
+      </tr>
+      <% data.Courses.forEach((el, idx) => { %>
+        <tr>
+          <td><%= idx + 1 %></td>
+          <td><%= el.name %></td>
+          <td><%= el.Category ? el.Category.name : "-" %></td>
+          <td><%= el.duration %></td>
+        </tr>
+      <% }) %>
+    </table>
+  <% } else { %>
+    <p>Belum mengikuti course apa pun.</p>
+  <% } %>
+</body>
+</html>
