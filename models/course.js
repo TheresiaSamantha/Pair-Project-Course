@@ -28,11 +28,48 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Course.init({
-    name: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    duration: DataTypes.INTEGER,
-    CategoryId: DataTypes.INTEGER,
-
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "Name is required" },
+          notNull:  { msg: "Name is required" }
+        }
+      },
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "Description is required" },
+          notNull:  { msg: "Description is required" },
+          len: {
+            args: [10, 5000],
+            msg: "Description min 10 characters"
+          }
+        }
+      },
+      duration: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "Duration is required" },
+          notNull:  { msg: "Duration is required" },
+          isInt:    { msg: "Duration must be an integer" },
+          min: {
+            args: [1],
+            msg: "Duration must be ≥ 1"
+          }
+        }
+      },
+      CategoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "Category is required" },
+          notNull:  { msg: "Category is required" },
+          isInt:    { msg: "Category is invalid" }
+        }
+      }
   }, {
     sequelize,
     modelName: 'Course',

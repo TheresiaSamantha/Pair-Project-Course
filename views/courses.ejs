@@ -9,8 +9,8 @@
 
   <h1>Courses</h1>
   <p style="color:brown">
-  Jumlah course saat ini: <%= info.total %>
-  </p> 
+    Jumlah course saat ini: <%= info.total %>
+  </p>
 
   <form method="GET" action="/courses" style="margin-bottom:14px;">
     <input type="text" name="search" placeholder="Search course name..." value="<%= search || '' %>">
@@ -18,46 +18,47 @@
   </form>
 
   <% if (notif) { %>
-  <p style="color: green; font-weight: bold;"><%= notif %></p>
+    <p style="color: green; font-weight: bold;"><%= notif %></p>
   <% } %>
 
-
-  <p><a href="/courses/add"><button>Add New Course</button></a></p>
+  <p>
+    <a href="/courses/add"><button>Add New Course</button></a>
+  </p>
 
   <table border="1" cellpadding="6">
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Duration (jam)</th>
-    <th>Category</th>
-    <th>Students</th>
-    <th>Action</th>
-  </tr>
-  <% courses.forEach(el => { %>
     <tr>
-      <td><%= el.name %></td>
-      <td><%= el.description %></td>
-      <td><%= el.duration %></td>
-      <td><%= el.Category ? el.Category.name : '-' %></td>
-      <td>
-        <% if (el.Students && el.Students.length) { %>
-          <ul style="margin:0; padding-left:18px;">
-            <% el.Students.forEach(s => { %>
-              <li><%= s.name %></li>
-            <% }) %>
-          </ul>
-        <% } else { %>
-          -
-        <% } %>
-      </td>
-      <td>
-        <a href="/courses/delete/<%= el.id %>" onclick="return confirm('Yakin ingin menghapus course ini?')">
-          <button>Delete Course</button>
-        </a>
-      </td>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Duration (jam)</th>
+      <th>Category</th>
+      <th>Students</th>
+      <th>Action</th>
     </tr>
-  <% }) %>
-</table>
+    <% courses.forEach(el => { %>
+      <tr>
+        <td><%= el.name %></td>
+        <td><%= toTitleCase(el.description) %></td>
+        <td><%= el.duration %></td>
+        <td><%= el.Category.name %></td>
+        <td>
+          <% if (el.Students && el.Students.length) { %>
+            <ul style="margin:0; padding-left:18px;">
+              <% el.Students.forEach(s => { %>
+                <li><%= s.name %></li>
+              <% }) %>
+            </ul>
+          <% } else { %>
+            -
+          <% } %>
+        </td>
+        <td>
+          <a href="/courses/delete/<%= el.id %>" onclick="return confirm('Yakin ingin menghapus course ini?')">
+            <button>Delete Course</button>
+          </a>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
 
 </body>
 </html>
