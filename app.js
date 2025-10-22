@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 // setting user
 // register
 app.get('/register', UserController.registerForm)
-// app.post('/register', UserController.postRegister)
+app.post('/register', UserController.postRegister)
 
 // login
 app.get('/login', UserController.loginForm)
