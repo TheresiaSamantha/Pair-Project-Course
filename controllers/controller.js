@@ -7,8 +7,7 @@ const easyinvoice = require('easyinvoice')
 class Controller {
     static landingPage(req, res) {
         try {
-            const {error} = req.query;
-            res.render("landingPage", {error})
+            res.render("landingPage")
         } catch (err) {
             res.send(err)
         }
@@ -16,6 +15,7 @@ class Controller {
 
     static async studentDetail(req, res) {
         try {
+            const {error} = req.query;
             const {userId} = req.session
 
             const data = await Student.findByPk(userId, {
@@ -25,7 +25,7 @@ class Controller {
                 ]
             })
 
-            res.render('studentDetails', { data })
+            res.render('studentDetails', { data, error })
         } catch (err) {
             res.send(err)
         }

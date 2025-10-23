@@ -49,7 +49,12 @@ class UserController {
                     req.session.userId = user.id
                     req.session.role = user.role
                     const {userId, role} = req.session
-                    return res.redirect('/students')
+                    if (role === "admin") {
+                        return res.redirect('/courses')
+                    } else {
+                        return res.redirect('/students')
+                    }
+                    
                 } else {
                     res.redirect(`/login?error=${error}`)
                 }
