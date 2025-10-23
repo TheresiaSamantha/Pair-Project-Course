@@ -1,8 +1,8 @@
 [
-  { "id": 1, "name": "Admin LeMusik", "email": "admin@lemusik.com", "password": "admin123", "role": "admin" },
-  { "id": 2, "name": "Andi", "email": "andi@student.com", "password": "12345", "role": "student" },
-  { "id": 3, "name": "Budi", "email": "budi@student.com", "password": "12345", "role": "student" },
-  { "id": 4, "name": "Citra", "email": "citra@student.com", "password": "12345", "role": "student" },
-  { "id": 5, "name": "Dewi", "email": "dewi@student.com", "password": "12345", "role": "student" },
-  { "id": 6, "name": "Eka", "email": "eka@student.com", "password": "12345", "role": "student" }
+  { "id": 1, "name": "Admin LeMusik", "email": "admin@lemusik.com", "password": "admin12345", "role": "admin" },
+  { "id": 2, "name": "Andi", "email": "andi@student.com", "password": "12345678", "role": "student" },
+  { "id": 3, "name": "Budi", "email": "budi@student.com", "password": "acbb12345", "role": "student" },
+  { "id": 4, "name": "Citra", "email": "citra@student.com", "password": "adcd12345", "role": "student" },
+  { "id": 5, "name": "Dewi", "email": "dewi@student.com", "password": "acgfg12345", "role": "student" },
+  { "id": 6, "name": "Eka", "email": "eka@student.com", "password": "axcfc12345", "role": "student" }
 ]
