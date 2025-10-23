@@ -40,8 +40,8 @@ class UserController {
     }
     static async postLogin(req, res) {
         try {
-            const { name, password } = req.body
-            const user = await Student.findOne({where: {name: name}})
+            const { email, password } = req.body
+            const user = await Student.findOne({where: {email: email}})
             const error = 'invalid username/password'
             if (user) {
                 const isValidPassword = bcrypt.compareSync(password, user.password);
