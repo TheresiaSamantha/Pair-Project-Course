@@ -8,6 +8,11 @@
 <body>
     <h1>Log In</h1>
     <h2>Silahkan masuk kalau sudah terdaftar</h2>
+
+    <% if (error) { %>
+     <p style="color: red;"><%= error %></p>
+    <% } %>
+
     <form action="/login" method="post">
         <label>Student Name</label><br>
         <input type="text" name="name"><br>
@@ -16,7 +21,7 @@
         <label>Password</label><br>
         <input type="password" name="password"><br>
         <br>
-        <input type="submit" value="Daftar">
+        <input type="submit" value="Masuk">
     </form>
 </body>
 </html>

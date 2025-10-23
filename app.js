@@ -14,7 +14,10 @@ app.post('/register', UserController.postRegister)
 
 // login
 app.get('/login', UserController.loginForm)
-// app.post('/login', UserController.postLogin)
+app.post('/login', UserController.postLogin)
+
+// logout
+app.get('/logout', UserController.getLogout)
 
 // all role
 app.get("/", Controller.landingPage);
