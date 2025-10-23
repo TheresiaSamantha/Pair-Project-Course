@@ -20,7 +20,14 @@ class UserController {
             })
             res.redirect('/login')
         } catch (err) {
-            res.send(err)
+            if(err.name === "SequelizeValidationError") {
+                err = err.errors.map(el => {
+                    return el.message
+            })
+            return res.render("register", { err })
+            } else {
+                res.send(err);
+            }
         }
     }
     static async loginForm(req, res) {
