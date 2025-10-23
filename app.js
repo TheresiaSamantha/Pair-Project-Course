@@ -61,6 +61,9 @@ app.get("/students/edit/:id", Controller.getEdit);
 app.post("/students/edit/:id", Controller.postEdit);
 app.get("/students/:id", Controller.studentDetail);
 
+// invoice per course (student detail)
+app.get("/students/:studentId/invoice/:courseId", Controller.invoiceCourse);
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

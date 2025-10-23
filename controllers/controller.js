@@ -1,6 +1,7 @@
 const { Student, StudentDetail, Course, Category } = require('../models')
 const { Op } = require('sequelize')
 const { toTitleCase } = require('../helpers/helper')
+const easyinvoice = require('easyinvoice')
 
 
 class Controller {
@@ -131,6 +132,45 @@ class Controller {
             res.redirect(`/courses?notif=${notif}`)
         } catch (err) {
             res.send(err)
+        }
+    }
+
+    static async invoiceCourse(req, res) {
+        try {
+        const { studentId, courseId } = req.params
+        const student = await Student.findByPk(studentId, { include: [StudentDetail] })
+        const course = await Course.findByPk(courseId)
+
+        if (!student || !course) {
+            return res.send('Data tidak ditemukan')
+        }
+
+        const RATE = 50000
+        const qty = Number(course.duration) || 0
+        const today = new Date().toISOString().split('T')[0]
+
+        const data = {
+            sender: { company: 'LeMusik Academy' },
+            client: { company: student.name },
+            information: {
+            number: `INV-${student.id}-${course.id}`,
+            date: today
+            },
+            products: [
+            { quantity: qty, description: course.name, price: RATE }
+            ],
+            settings: { currency: 'IDR' },
+            'bottom-notice': 'Terima kasih telah belajar di LeMusik!'
+        }
+
+        const result = await easyinvoice.createInvoice(data)
+        const pdfBuffer = Buffer.from(result.pdf, 'base64')
+
+        res.setHeader('Content-Type', 'application/pdf')
+        res.setHeader('Content-Disposition', 'inline; filename=invoice.pdf')
+        res.end(pdfBuffer)
+        } catch (err) {
+        res.send(err)
         }
     }
     
