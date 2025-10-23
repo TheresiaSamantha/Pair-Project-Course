@@ -19,6 +19,7 @@
   "homepage": "https://github.com/TheresiaSamantha/Pair-Project-Course#readme",
   "dependencies": {
     "bcryptjs": "^3.0.2",
+    "easyinvoice": "^3.0.47",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
