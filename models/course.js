@@ -42,9 +42,11 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: { msg: "Description is required" },
           notNull:  { msg: "Description is required" },
-          len: {
-            args: [10, 5000],
-            msg: "Description min 10 characters"
+          minChars(value) {
+            if (!value) return
+            if (value.length < 10) {
+              throw new Error("Description must be at least 10 characters")
+            }
           }
         }
       },
@@ -53,11 +55,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notEmpty: { msg: "Duration is required" },
-          notNull:  { msg: "Duration is required" },
-          isInt:    { msg: "Duration must be an integer" },
-          min: {
-            args: [1],
-            msg: "Duration must be ≥ 1"
+          notNull: { msg: "Duration is required" },
+          validRange(value) {
+            if (!value) return
+            if (value < 10) {
+              throw new Error("Duration must be at least 10 hours")
+            }
+            if (value > 100) {
+              throw new Error("Duration cannot exceed 100 hours")
+            }
           }
         }
       },
@@ -67,7 +73,6 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: { msg: "Category is required" },
           notNull:  { msg: "Category is required" },
-          isInt:    { msg: "Category is invalid" }
         }
       }
   }, {
