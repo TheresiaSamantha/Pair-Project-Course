@@ -39,6 +39,9 @@ class UserController {
             if (user) {
                 const isValidPassword = bcrypt.compareSync(password, user.password);
                 if (isValidPassword) {
+                    req.session.userId = user.id
+                    req.session.role = user.role
+                    const {userId, role} = req.session
                     return res.redirect('/')
                 } else {
                     res.redirect(`/login?error=${error}`)
@@ -53,7 +56,8 @@ class UserController {
     }
     static async getLogout(req, res) {
         try {
-            res.send("test")
+            await req.session.destroy()
+            return res.redirect('/')
         } catch (err) {
             res.send(err)
         }
