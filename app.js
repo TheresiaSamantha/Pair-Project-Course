@@ -44,7 +44,7 @@ app.get('/logout', UserController.getLogout)
 const isAdmin = (function(req,res,next){
 	if(req.session.role !== 'admin'){
 		const error = 'You have no access'
-		res.redirect(`/?error=${error}`)
+		res.redirect(`/students?error=${error}`)
 	} else {
 		next()
 	}
