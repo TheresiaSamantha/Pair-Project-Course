@@ -57,12 +57,12 @@ app.post("/courses/add", isAdmin,Controller.postAdd);
 app.get("/courses/delete/:id", isAdmin,Controller.delete);
 
 // role student
-app.get("/students/edit/:id", Controller.getEdit);
-app.post("/students/edit/:id", Controller.postEdit);
-app.get("/students/:id", Controller.studentDetail);
+app.get("/students/edit", Controller.getEdit);
+app.post("/students/edit", Controller.postEdit);
+app.get("/students", Controller.studentDetail);
 
 // invoice per course (student detail)
-app.get("/students/:studentId/invoice/:courseId", Controller.invoiceCourse);
+app.get("/students/invoice/:courseId", Controller.invoiceCourse);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

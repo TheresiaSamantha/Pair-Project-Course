@@ -42,14 +42,14 @@ class UserController {
         try {
             const { email, password } = req.body
             const user = await Student.findOne({where: {email: email}})
-            const error = 'invalid username/password'
+            const error = 'invalid email/password'
             if (user) {
                 const isValidPassword = bcrypt.compareSync(password, user.password);
                 if (isValidPassword) {
                     req.session.userId = user.id
                     req.session.role = user.role
                     const {userId, role} = req.session
-                    return res.redirect('/')
+                    return res.redirect('/students')
                 } else {
                     res.redirect(`/login?error=${error}`)
                 }
