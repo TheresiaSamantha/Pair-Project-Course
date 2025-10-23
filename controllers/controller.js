@@ -7,7 +7,8 @@ const easyinvoice = require('easyinvoice')
 class Controller {
     static landingPage(req, res) {
         try {
-            res.render("landingPage")
+            const {role} = req.session
+            res.render("landingPage", {role})
         } catch (err) {
             res.send(err)
         }

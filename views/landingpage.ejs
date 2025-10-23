@@ -6,8 +6,14 @@
   <title>LeMusik Academy</title>
 </head>
 <body>
+<% if (role === "admin") { %>
+  <%- include('partial/navbarAfterAdmin') %>
+<% } else if (role === "student") { %>
+  <%- include('partial/navbarAfterStudent') %>
+<% } else { %>
+  <%- include('partial/navbarBefore') %>
+<% } %>
 
-<%- include('partial/navbarBefore') %>
   <main>
     <section>
       <h2>Temukan Bakat Musikmu Bersama LeMusik</h2>
