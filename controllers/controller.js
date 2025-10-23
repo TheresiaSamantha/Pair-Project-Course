@@ -150,17 +150,35 @@ class Controller {
         const today = new Date().toISOString().split('T')[0]
 
         const data = {
-            sender: { company: 'LeMusik Academy' },
-            client: { company: student.name },
+            sender: {
+            company: 'LeMusik Academy',
+            address: 'Jl. Melodi No. 88',
+            zip: '40222',
+            city: 'Bandung',
+            country: 'Indonesia',
+            email: 'support@lemusik.id'
+            },
+            client: {
+            company: student.name,
+            address: student.StudentDetail ? student.StudentDetail.address : '-',
+            zip: student.StudentDetail ? String(student.StudentDetail.ktm) : '-',
+            city: '—',
+            country: 'Indonesia',
+            },
             information: {
             number: `INV-${student.id}-${course.id}`,
-            date: today
+            date: today,
+            'due-date': today
             },
             products: [
-            { quantity: qty, description: course.name, price: RATE }
+            {
+                quantity: qty,
+                description: `${course.name}`,
+                price: RATE
+            }
             ],
             settings: { currency: 'IDR' },
-            'bottom-notice': 'Terima kasih telah belajar di LeMusik!'
+            'bottom-notice': 'Terima kasih telah belajar di LeMusik Academy!'
         }
 
         const result = await easyinvoice.createInvoice(data)
