@@ -7,13 +7,13 @@
 </head>
 <body>
   <nav>
-    <a href="/students/<%= data.id %>">Back to Detail</a>
+    <a href="/students">Back to Detail</a>
   </nav>
 
   <h1>Edit Student Detail</h1>
   <h3>Profile: <%= data.name %></h3>
 
-  <form method="POST" action="/students/edit/<%= data.id %>">
+  <form method="POST" action="/students/edit">
     <p>
       <label>Name</label><br>
       <input type="text" name="name" value="<%= data.name %>" required>

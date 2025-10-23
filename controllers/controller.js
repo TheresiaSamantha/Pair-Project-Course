@@ -16,9 +16,9 @@ class Controller {
 
     static async studentDetail(req, res) {
         try {
-            const { id } = req.params
+            const {userId} = req.session
 
-            const data = await Student.findByPk(id, {
+            const data = await Student.findByPk(userId, {
                 include: [
                 { model: StudentDetail },
                 { model: Course, include: [Category] }
@@ -33,9 +33,9 @@ class Controller {
 
     static async getEdit(req, res) {
         try {
-            const { id } = req.params
+            const {userId} = req.session
 
-            const data = await Student.findByPk(id, {
+            const data = await Student.findByPk(userId, {
             include: [StudentDetail]
             })
 
@@ -47,9 +47,10 @@ class Controller {
 
         static async postEdit(req, res) {
         try {
-            const { id } = req.params
+            const {userId} = req.session
+            const id = userId
+            console.log(id, "<---- student id");
             const { name, address, ktm, grade, dateOfBirth } = req.body
-
             await Student.update({ name }, { where: { id } })
 
             const detail = await StudentDetail.findOne({ where: { StudentId: id } })
@@ -62,7 +63,7 @@ class Controller {
             await StudentDetail.create({ address, ktm, grade, dateOfBirth, StudentId: id })
             }
 
-            res.redirect(`/students/${id}`)
+            res.redirect(`/students`)
         } catch (err) {
             res.send(err)
         }
@@ -137,8 +138,9 @@ class Controller {
 
     static async invoiceCourse(req, res) {
         try {
-        const { studentId, courseId } = req.params
-        const student = await Student.findByPk(studentId, { include: [StudentDetail] })
+        const { courseId } = req.params
+        const {userId} = req.session
+        const student = await Student.findByPk(userId, { include: [StudentDetail] })
         const course = await Course.findByPk(courseId)
 
         if (!student || !course) {

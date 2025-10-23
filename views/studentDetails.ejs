@@ -6,6 +6,7 @@
   <title>Student Detail</title>
 </head>
 <body>
+  <%- include('partial/navbarAfterStudent') %>
 
   <h1>Student Detail</h1>
 
@@ -35,7 +36,7 @@
   </table>
 
   <p>
-    <a href="/students/edit/<%= data.id %>">
+    <a href="/students/edit">
       <button>Edit Profile</button>
     </a>
   </p>
@@ -57,7 +58,7 @@
           <td><%= el.Category ? el.Category.name : "-" %></td>
           <td><%= el.duration %></td>
           <td>
-            <a href="/students/<%= data.id %>/invoice/<%= el.id %>" target="_blank">
+            <a href="/students/invoice/<%= el.id %>" target="_blank">
               <button>Lihat Invoice</button>
             </a>
           </td>
