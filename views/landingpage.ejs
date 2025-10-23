@@ -7,14 +7,10 @@
 </head>
 <body>
 
-  <header>
-    <h1>LeMusik Academy</h1>
-    <nav>
-      <a href="/register">Register</a> |
-      <a href="/login">Login</a>
-    </nav>
-  </header>
-
+<%- include('partial/navbarBefore') %>
+  <% if (error) { %>
+     <p style="color: red;"><%= error %></p>
+  <% } %>
   <main>
     <section>
       <h2>Temukan Bakat Musikmu Bersama LeMusik</h2>

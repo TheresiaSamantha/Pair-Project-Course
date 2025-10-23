@@ -6,7 +6,8 @@ const { toTitleCase } = require('../helpers/helper')
 class Controller {
     static landingPage(req, res) {
         try {
-            res.render("landingPage")
+            const {error} = req.query;
+            res.render("landingPage", {error})
         } catch (err) {
             res.send(err)
         }
